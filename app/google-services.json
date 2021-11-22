@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "759159419390",
+    "project_id": "coop-kotlin",
+    "storage_bucket": "coop-kotlin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:759159419390:android:3320b08d71af3f0fd310af",
+        "android_client_info": {
+          "package_name": "com.example.coop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "759159419390-2adkdpicldm6512h4s49jhg9r7k7ijhf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.coop",
+            "certificate_hash": "3ceaf2821d1233e79e060c3ea2690643f02287fe"
+          }
+        },
+        {
+          "client_id": "759159419390-ggt4fpa894vlfdko3he1e1k5h4poka79.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVv6YTDQLYruZwoYYKlAEtFxMLzSuwby8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "759159419390-ggt4fpa894vlfdko3he1e1k5h4poka79.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

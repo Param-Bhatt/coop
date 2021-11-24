@@ -3,6 +3,7 @@ package com.example.coop
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
@@ -15,10 +16,9 @@ class DashboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
-
         mAuth = FirebaseAuth.getInstance()
         val currentUser = mAuth.currentUser
-
+        Log.d("User", "$currentUser")
         id_txt.text = currentUser?.uid
         name_txt.text = currentUser?.displayName
         email_txt.text = currentUser?.email

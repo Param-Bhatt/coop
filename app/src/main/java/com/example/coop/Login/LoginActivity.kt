@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
+import com.example.coop.DashboardActivity
 import com.example.coop.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -28,6 +30,7 @@ class LoginActivity : AppCompatActivity() {
             .build()
         var googleSignInClient = GoogleSignIn.getClient(this, gso)
         auth = FirebaseAuth.getInstance()
+        val sign_in_btn= findViewById(R.id.sign_in_button) as Button
         sign_in_btn.setOnClickListener {
             signIn()
         }

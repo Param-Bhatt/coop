@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <item
+        android:id="@+id/nav_home"
+        android:title="@string/nav_home"
+        android:icon="@drawable/ic_baseline_home_24"/>
+
+    <item
+        android:id="@+id/nav_settings"
+        android:title="@string/nav_settings"
+        android:icon="@drawable/ic_baseline_settings_24"/>
+
+    <item
+        android:id="@+id/delete"
+        android:title="@string/nav_delete"
+        android:icon="@drawable/ic_baseline_delete_24"/>
+
+    <item
+        android:title="@string/menu_topics">
+        <menu>
+            <item
+                android:id="@+id/topic_share"
+                android:title="@string/user_email"
+                android:icon="@drawable/ic_baseline_share_24"/>
+        </menu>
+    </item>
+
+</menu>

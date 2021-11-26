@@ -14,6 +14,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_dashboard.*
@@ -63,7 +64,8 @@ class DashboardActivity : AppCompatActivity() {
         Glide.with(this).load(currentUser?.photoUrl).into(navView.getHeaderView(0).findViewById(R.id.profile_image_side) as ImageView?)
 
         var collectionPath = "users"
-        db.collection(collectionPath)
+        val query: Query = db.collection("users").whereEqualTo("name", currentUser?.displayName.toString())
+        query
             .get()
             .addOnSuccessListener { userResult ->
                 for(document in userResult){

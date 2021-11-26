@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
@@ -56,6 +57,15 @@ class DashboardActivity : AppCompatActivity() {
         email_txt.text = currentUser?.email
 
         Glide.with(this).load(currentUser?.photoUrl).into(profile_image as ImageView?)
+
+        val hView = nav_view.getHeaderView(0)
+        val textViewName = hView.findViewById(R.id.user_name) as TextView
+        val textViewEmail = hView.findViewById(R.id.user_email) as TextView
+        val imgvw = hView.findViewById(R.id.user_image) as ImageView
+        textViewName.text = currentUser?.displayName
+        textViewEmail.text = currentUser?.email
+
+        Glide.with(this).load(currentUser?.photoUrl).into(imgvw as ImageView?)
 
         var collectionPath = "users"
         db.collection(collectionPath)

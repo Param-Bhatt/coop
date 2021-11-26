@@ -9,28 +9,29 @@
     android:background="@color/white">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/user_image"
-        android:layout_width="60dp"
-        android:layout_height="60dp"/>
+        android:id="@+id/profile_image_side"
+        android:layout_width="100dp"
+        android:layout_height="100dp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/user_name"
+        android:id="@+id/user_name_side"
         android:paddingTop="8dp"
-        android:textSize="20dp"
-        android:text="@string/username"
+        android:textSize="20sp"
         android:textColor="@color/black"
         android:textStyle="bold"/>
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/email_side"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16dp"
-        android:text="@string/user_email"
-        android:id="@+id/user_email"/>
+        android:singleLine="true"
+        android:ellipsize="none"
+        android:textSize="16sp"
+        android:text="@string/user_email"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="10dp"/>
 
 
 

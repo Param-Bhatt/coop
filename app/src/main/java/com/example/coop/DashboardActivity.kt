@@ -17,6 +17,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_dashboard.*
+import kotlinx.android.synthetic.main.activity_dashboard.profile_image
+import kotlinx.android.synthetic.main.nav_header.*
 
 class DashboardActivity : AppCompatActivity() {
 
@@ -47,8 +49,6 @@ class DashboardActivity : AppCompatActivity() {
             true
         }
 
-        val mMenu = navView.menu
-        var menuSize = mMenu.size()
         mAuth = FirebaseAuth.getInstance()
         val currentUser = mAuth.currentUser
         Log.d("User", "$currentUser")
@@ -58,14 +58,9 @@ class DashboardActivity : AppCompatActivity() {
 
         Glide.with(this).load(currentUser?.photoUrl).into(profile_image as ImageView?)
 
-        val hView = nav_view.getHeaderView(0)
-        val textViewName = hView.findViewById(R.id.user_name) as TextView
-        val textViewEmail = hView.findViewById(R.id.user_email) as TextView
-        val imgvw = hView.findViewById(R.id.user_image) as ImageView
-        textViewName.text = currentUser?.displayName
-        textViewEmail.text = currentUser?.email
-
-        Glide.with(this).load(currentUser?.photoUrl).into(imgvw as ImageView?)
+        navView.getHeaderView(0).findViewById<TextView>(R.id.user_name_side).text = currentUser?.displayName
+        navView.getHeaderView(0).findViewById<TextView>(R.id.email_side).text = currentUser?.email
+        Glide.with(this).load(currentUser?.photoUrl).into(navView.getHeaderView(0).findViewById(R.id.profile_image_side) as ImageView?)
 
         var collectionPath = "users"
         db.collection(collectionPath)

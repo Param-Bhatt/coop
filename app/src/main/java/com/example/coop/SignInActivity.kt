@@ -1,17 +1,26 @@
 package com.example.coop
 
+import android.content.ContentValues
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import androidx.annotation.RequiresApi
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_sign_in.*
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.HashMap
 
 class SignInActivity : AppCompatActivity() {
 
@@ -76,6 +85,8 @@ class SignInActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("SignInActivity", "signInWithCredential:success")
+                    updateUserTable()
+                    //miniUpdate()
                     val intent = Intent(this, DashboardActivity::class.java)
                     startActivity(intent)
                     finish()
@@ -84,6 +95,36 @@ class SignInActivity : AppCompatActivity() {
                     Log.d("SignInActivity", "signInWithCredential:failure")
                 }
             }
+    }
+    private fun updateUserTable(){
+        val db = Firebase.firestore
+        val currentUser = mAuth.currentUser
+        val query:Query = db.collection("users").whereEqualTo("name", currentUser?.displayName.toString())
+        query
+            .get()
+            .addOnSuccessListener { result ->
+                if(result.isEmpty){
+                    val data = HashMap<String, Any>()
+                    if (currentUser != null) {
+                        data["name"] = currentUser?.displayName.toString()
+                    }
+                    val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
+                    val currentDate = sdf.format(Date())
+                    data["time"] = currentDate
+                    db.collection("users")
+                        .add(data)
+                        .addOnSuccessListener { ref ->
+                            Log.d("userAdditionSuccess", "DocumentSnapshot written with ID: ${ref.id}")
+                        }
+                        .addOnFailureListener { e ->
+                            Log.w("userAdditionFailure", "Error adding user", e)
+                        }
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w(ContentValues.TAG, "Error in getting documents posts", exception)
+            }
+        Log.d("SignInActivity", "User bum bum bole masti me dole ${currentUser?.displayName}")
     }
 
 }

@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
@@ -16,6 +17,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_dashboard.*
+import kotlinx.android.synthetic.main.activity_dashboard.profile_image
+import kotlinx.android.synthetic.main.nav_header.*
 
 class DashboardActivity : AppCompatActivity() {
 
@@ -46,8 +49,6 @@ class DashboardActivity : AppCompatActivity() {
             true
         }
 
-        val mMenu = navView.menu
-        var menuSize = mMenu.size()
         mAuth = FirebaseAuth.getInstance()
         val currentUser = mAuth.currentUser
         Log.d("User", "$currentUser")
@@ -56,6 +57,10 @@ class DashboardActivity : AppCompatActivity() {
         email_txt.text = currentUser?.email
 
         Glide.with(this).load(currentUser?.photoUrl).into(profile_image as ImageView?)
+
+        navView.getHeaderView(0).findViewById<TextView>(R.id.user_name_side).text = currentUser?.displayName
+        navView.getHeaderView(0).findViewById<TextView>(R.id.email_side).text = currentUser?.email
+        Glide.with(this).load(currentUser?.photoUrl).into(navView.getHeaderView(0).findViewById(R.id.profile_image_side) as ImageView?)
 
         var collectionPath = "users"
         db.collection(collectionPath)

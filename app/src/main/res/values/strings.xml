@@ -13,8 +13,12 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-    <string name="username">Param Bhatt</string> //Currently statically typed, have to implement it to dynamic typed and get info from firebase auth
-    <string name="user_email">f20180862@hyderabad.bits-pilani.ac.in</string> //Currently statically typed, have to implement it to dynamic typed and get info from firebase auth
+    <string name="username">Param Bhatt</string>
+    //Currently statically typed, have to implement it to dynamic typed and get info from firebase
+    auth
+    <string name="user_email">f20180862@hyderabad.bits-pilani.ac.in</string>
+    //Currently statically typed, have to implement it to dynamic typed and get info from firebase
+    auth
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>

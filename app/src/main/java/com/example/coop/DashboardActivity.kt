@@ -25,7 +25,8 @@ class DashboardActivity : AppCompatActivity() {
 
     private lateinit var mAuth: FirebaseAuth
     lateinit var toggle : ActionBarDrawerToggle
-
+    //var topicList:HashMap<String, String> = HashMap<String, String>()
+    var topicList:ArrayList<String> = ArrayList()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
@@ -45,7 +46,14 @@ class DashboardActivity : AppCompatActivity() {
                 R.id.nav_home -> Toast.makeText(applicationContext, "Clicked home", Toast.LENGTH_SHORT).show()
                 R.id.nav_settings -> Toast.makeText(applicationContext, "Clicked settings", Toast.LENGTH_SHORT).show()
                 R.id.delete -> Toast.makeText(applicationContext, "Clicked delete", Toast.LENGTH_SHORT).show()
+                //for((key, value) in topicList)
+                //topicList.forEach{(key, value) -> makeIntent(key)}
 
+            }
+            for(i in topicList){
+                if(it.itemId == i.toInt())
+                //Toast.makeText(applicationContext, "Clicked item with id $i", Toast.LENGTH_SHORT).show()//
+                makeIntent(i)
             }
             true
         }
@@ -74,14 +82,15 @@ class DashboardActivity : AppCompatActivity() {
                     db.collection(collectionPath)
                         .get()
                         .addOnSuccessListener{ userTopics ->
-                            var i = 1
                             for(each in userTopics){
                                 Log.d(TAG, "${each.id} => ${each.data["topicName"]}")
 
                                 val mMenu = navView.menu
                                 var menuSize = mMenu.size()
-                                mMenu.add(i, menuSize, menuSize, each.data["topicName"] as String)
-                                i+=1
+                                var myItemID:String = each.data["topicID"] as String
+                                mMenu.add(1, myItemID.toInt(), menuSize, each.data["topicName"] as String)
+                                //topicList.put(each.id, each.data["topicName"] as String)
+                                topicList.add(myItemID)
                             }
                         }
                         .addOnFailureListener { exception ->
@@ -106,5 +115,11 @@ class DashboardActivity : AppCompatActivity() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun makeIntent(topicID : String){
+        val intent = Intent(this, topicViewActivity::class.java)
+        intent.putExtra("topic", topicID)
+        startActivity(intent)
     }
 }

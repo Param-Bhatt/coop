@@ -14,6 +14,12 @@ internal class UserAdapter(var context: Context, fm: FragmentManager?, var total
         if(position == 0) {
             return UserInfo()
         }
+        else if(position == 1) {
+            return UserPosts()
+        }
+        else if(position == 2) {
+            return UserComments()
+        }
         return Fragment()
     }
 

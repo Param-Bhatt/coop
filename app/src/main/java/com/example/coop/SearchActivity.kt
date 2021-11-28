@@ -75,7 +75,7 @@ class SearchActivity : AppCompatActivity() {
             mRecyclerView!!.adapter = mAdapter
             (mAdapter as TopicAdapter).setOnItemClickListener(object : TopicAdapter.ClickListener {
                 override fun onItemClick(position: Int, v: View?) {
-                    val intent = Intent(this, topicViewActivity::class.java)
+                    val intent = Intent(this@SearchActivity, topicViewActivity::class.java)
                     intent.putExtra("topic", alltopics[position].id)
                     startActivity(intent)
                 }
@@ -154,7 +154,7 @@ class SearchActivity : AppCompatActivity() {
             mRecyclerView!!.adapter = mAdapter
             (mAdapter as TopicAdapter).setOnItemClickListener(object : TopicAdapter.ClickListener {
                 override fun onItemClick(position: Int, v: View?) {
-                    val intent = Intent(this, topicViewActivity::class.java)
+                    val intent = Intent(this@SearchActivity, topicViewActivity::class.java)
                     intent.putExtra("topic", listOfresults[position].id)
                     startActivity(intent)
                 }

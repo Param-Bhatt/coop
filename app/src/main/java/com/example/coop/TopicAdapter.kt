@@ -17,7 +17,7 @@ class TopicAdapter(private val mDataList: ArrayList<Topics>) : RecyclerView.Adap
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.res.text = mDataList[position].topic
-        holder.follow.text = mDataList[position].followers
+        holder.follow.text = "Followers: ${mDataList[position].followers}"
     }
 
     override fun getItemCount(): Int {

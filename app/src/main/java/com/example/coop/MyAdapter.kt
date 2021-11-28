@@ -5,12 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import android.R
-import android.view.View.OnLongClickListener
-
 
 class Myadapter(private val mDataList: ArrayList<Users>) : RecyclerView.Adapter<Myadapter.MyViewHolder>() {
-
+    private var clickListener: ClickListener? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.row_user, parent, false)
         return MyViewHolder(view)
@@ -25,46 +22,25 @@ class Myadapter(private val mDataList: ArrayList<Users>) : RecyclerView.Adapter<
         return mDataList.size
     }
 
-    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         internal var post_title: TextView
         internal var post_body: TextView
-
+        var name: TextView? = null
         init {
             post_title = itemView.findViewById<View>(R.id.post_title) as TextView
             post_body = itemView.findViewById<View>(R.id.post_body) as TextView
+            itemView.setOnClickListener(this);
+            name = itemView.findViewById(R.id.post_title);
         }
-    }
-}
-class PasswordAdapter : RecyclerView.Adapter<PasswordAdapter.ViewHolder?>() {
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
-        View.OnClickListener, OnLongClickListener {
-        var name: TextView
-        override fun onClick(v: View) {
+        override fun onClick(v: View?) {
             clickListener!!.onItemClick(adapterPosition, v)
         }
-
-        override fun onLongClick(v: View): Boolean {
-            clickListener!!.onItemLongClick(adapterPosition, v)
-            return false
-        }
-
-        init {
-            itemView.setOnClickListener(this)
-            itemView.setOnLongClickListener(this)
-            name = itemView.findViewById<View>(R.id.card_name) as TextView
-        }
     }
-
-    fun setOnItemClickListener(clickListener: ClickListener?) {
-        Companion.clickListener = clickListener
+    fun setOnItemClickListener(clickListener: ClickListener) {
+        this.clickListener = clickListener
     }
-
     interface ClickListener {
         fun onItemClick(position: Int, v: View?)
         fun onItemLongClick(position: Int, v: View?)
-    }
-
-    companion object {
-        private var clickListener: ClickListener? = null
     }
 }

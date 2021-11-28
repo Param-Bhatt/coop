@@ -8,7 +8,51 @@
     android:layout_height="match_parent"
     tools:context=".topicViewActivity"
     android:orientation="vertical">
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/topicHeader"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/colorPrimary"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:text="@string/example"
+        android:textAlignment="center"
+        android:layout_margin="4dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@id/topicHeader"
+        app:layout_constraintTop_toBottomOf="@id/topicHeader"
+        android:weightSum="2"
+        android:id="@+id/topicSubHeader"
+        android:layout_margin="10dp"
+        android:layout_marginTop="4dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:orientation="vertical"
+            android:text="@string/example"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp"
+            android:layout_weight="1"
+            android:id="@+id/followerCount"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/followButton"
+            android:layout_weight="1"
+            android:textSize="15dp"
+            android:paddingRight="20sp"
+            android:paddingLeft="20sp"
+            android:textColor="@color/white"
+            android:text="@string/follow"/>
+    </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/my_recycler_view"
         android:layout_width="match_parent"
@@ -16,10 +60,11 @@
         android:layout_marginBottom="4dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="140dp"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@id/topicSubHeader"
+        app:layout_constraintTop_toBottomOf="@id/topicSubHeader"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

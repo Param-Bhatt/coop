@@ -3,19 +3,27 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/vikky/StudioProjects/coop/app/src/main/res/layout/activity_search.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/vikky/StudioProjects/coop/app/src/main/res/layout/activity_user.xml" value="0.2598958333333333" />
+        <entry key="..\:/Users/vikky/StudioProjects/coop/app/src/main/res/layout/activity_user_info.xml" value="0.9" />
+        <entry key="..\:/Users/vikky/StudioProjects/coop/app/src/main/res/layout/fragmebt_user_posts.xml" value="0.2552083333333333" />
+        <entry key="..\:/Users/vikky/StudioProjects/coop/app/src/main/res/layout/fragment_user_comments.xml" value="0.2552083333333333" />
+        <entry key="..\:/Users/vikky/StudioProjects/coop/app/src/main/res/layout/fragment_user_info.xml" value="0.19583333333333333" />
+        <entry key="..\:/Users/vikky/StudioProjects/coop/app/src/main/res/layout/nav_header.xml" value="0.19429347826086957" />
+        <entry key="..\:/Users/vikky/StudioProjects/coop/app/src/main/res/layout/row_user.xml" value="0.203125" />
+        <entry key="..\:/Users/vikky/StudioProjects/coop/app/src/main/res/layout/search_results.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/vikky/StudioProjects/coop/app/src/main/res/menu/options_menu.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.23484848484848486" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.19635416666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18489583333333334" />
         <entry key="app/src/main/res/layout/activity_post_view.xml" value="0.1765625" />
         <entry key="app/src/main/res/layout/activity_sidepanel.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.33559782608695654" />
-        <entry key="app/src/main/res/layout/activity_topic_view.xml" value="0.25" />
         <entry key="app/src/main/res/layout/content_sidepanel.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/fragment_slideshow.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/nav_header.xml" value="0.1890625" />
-        <entry key="app/src/main/res/layout/row_user.xml" value="0.1765625" />
         <entry key="app/src/main/res/menu/nav_menu.xml" value="0.67" />
       </map>
     </option>

@@ -5,8 +5,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -17,9 +20,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.activity_dashboard.profile_image
-import kotlinx.android.synthetic.main.nav_header.*
 
 class DashboardActivity : AppCompatActivity() {
 
@@ -45,10 +48,6 @@ class DashboardActivity : AppCompatActivity() {
             when(it.itemId){
                 R.id.nav_home -> Toast.makeText(applicationContext, "Clicked home", Toast.LENGTH_SHORT).show()
                 R.id.nav_settings -> Toast.makeText(applicationContext, "Clicked settings", Toast.LENGTH_SHORT).show()
-                R.id.delete -> Toast.makeText(applicationContext, "Clicked delete", Toast.LENGTH_SHORT).show()
-                //for((key, value) in topicList)
-                //topicList.forEach{(key, value) -> makeIntent(key)}
-
             }
             for(i in topicList){
                 if(it.itemId == i.toInt())
@@ -113,6 +112,10 @@ class DashboardActivity : AppCompatActivity() {
         if(toggle.onOptionsItemSelected(item)){
             return true
         }
+        else if(item.itemId == R.id.search) {
+            val intent = Intent(this, SearchActivity::class.java)
+            startActivity(intent)
+        }
 
         return super.onOptionsItemSelected(item)
     }
@@ -121,5 +124,16 @@ class DashboardActivity : AppCompatActivity() {
         val intent = Intent(this, topicViewActivity::class.java)
         intent.putExtra("topic", topicID)
         startActivity(intent)
+    }
+    
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.options_menu, menu)
+        val header = findViewById<LinearLayout>(R.id.nav_header)
+        header.setOnClickListener {
+            val intent = Intent(this, UserActivity::class.java)
+            startActivity(intent)
+        }
+
+        return true
     }
 }

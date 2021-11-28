@@ -19,7 +19,6 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.activity_dashboard.profile_image
-import kotlinx.android.synthetic.main.nav_header.*
 
 class DashboardActivity : AppCompatActivity() {
 
@@ -41,10 +40,14 @@ class DashboardActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         navView.setNavigationItemSelectedListener {
+            if(it.itemId == R.id.delete) {
+                val intent = Intent(this, SearchActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
             when(it.itemId){
                 R.id.nav_home -> Toast.makeText(applicationContext, "Clicked home", Toast.LENGTH_SHORT).show()
                 R.id.nav_settings -> Toast.makeText(applicationContext, "Clicked settings", Toast.LENGTH_SHORT).show()
-                R.id.delete -> Toast.makeText(applicationContext, "Clicked delete", Toast.LENGTH_SHORT).show()
 
             }
             true
@@ -79,7 +82,7 @@ class DashboardActivity : AppCompatActivity() {
                                 Log.d(TAG, "${each.id} => ${each.data["topicName"]}")
 
                                 val mMenu = navView.menu
-                                var menuSize = mMenu.size()
+                                val menuSize = mMenu.size()
                                 mMenu.add(i, menuSize, menuSize, each.data["topicName"] as String)
                                 i+=1
                             }

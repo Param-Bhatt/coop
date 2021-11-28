@@ -66,6 +66,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.google.android.material:material:1.4.0'
     implementation "org.jetbrains.anko:anko:0.10.4"  //anko library
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
     kapt "com.android.databinding:compiler:3.1.4"
 
 }

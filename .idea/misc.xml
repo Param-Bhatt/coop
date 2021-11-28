@@ -15,11 +15,13 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18489583333333334" />
         <entry key="app/src/main/res/layout/activity_sidepanel.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.33559782608695654" />
+        <entry key="app/src/main/res/layout/activity_topic_view.xml" value="0.25" />
         <entry key="app/src/main/res/layout/content_sidepanel.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/fragment_slideshow.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/nav_header.xml" value="0.1890625" />
+        <entry key="app/src/main/res/layout/row_user.xml" value="0.1765625" />
         <entry key="app/src/main/res/menu/nav_menu.xml" value="0.67" />
       </map>
     </option>

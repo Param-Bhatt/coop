@@ -28,6 +28,7 @@
     <string name="menu_topics">Topics</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="follow">Follow this</string>
     <string name="title_activity_search">SearchActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>

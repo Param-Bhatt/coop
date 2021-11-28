@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
@@ -40,11 +41,6 @@ class DashboardActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         navView.setNavigationItemSelectedListener {
-            if(it.itemId == R.id.delete) {
-                val intent = Intent(this, SearchActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
             when(it.itemId){
                 R.id.nav_home -> Toast.makeText(applicationContext, "Clicked home", Toast.LENGTH_SHORT).show()
                 R.id.nav_settings -> Toast.makeText(applicationContext, "Clicked settings", Toast.LENGTH_SHORT).show()
@@ -107,7 +103,16 @@ class DashboardActivity : AppCompatActivity() {
         if(toggle.onOptionsItemSelected(item)){
             return true
         }
+        else if(item.itemId == R.id.search) {
+            val intent = Intent(this, SearchActivity::class.java)
+            startActivity(intent)
+        }
 
         return super.onOptionsItemSelected(item)
+    }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.options_menu, menu)
+
+        return true
     }
 }

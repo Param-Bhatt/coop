@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
@@ -41,7 +42,6 @@ class SearchActivity : AppCompatActivity() {
         mSearchView = findViewById(R.id.search_bar)
         with(mSearchView) {
             this?.isIconified = false
-            this?.clearFocus()
         }
 
         val mDrawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
@@ -53,11 +53,6 @@ class SearchActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         mNavView.setNavigationItemSelectedListener {
-            if(it.itemId == R.id.delete) {
-                val intent = Intent(this, SearchActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
             when(it.itemId){
                 R.id.nav_home -> Toast.makeText(applicationContext, "Clicked home", Toast.LENGTH_SHORT).show()
                 R.id.nav_settings -> Toast.makeText(applicationContext, "Clicked settings", Toast.LENGTH_SHORT).show()

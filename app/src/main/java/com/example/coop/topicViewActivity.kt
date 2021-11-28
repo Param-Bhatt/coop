@@ -90,6 +90,8 @@ class topicViewActivity : AppCompatActivity() {
                 .delete()
                 .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully deleted!") }
                 .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
+            val button = findViewById<Button>(R.id.followButton) as Button
+            button.text = "Follow This"
         }
     }
     private fun followed() {
@@ -128,6 +130,8 @@ class topicViewActivity : AppCompatActivity() {
                         }
                 }
             }
+            val button = findViewById<Button>(R.id.followButton) as Button
+            button.text = "Unfollow This"
         }
 
     }

@@ -29,4 +29,7 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="follow">Follow this</string>
+    <string name="comment">Comment</string>
+    <string name="commentText">Make a comment</string>
+    <string name="share">Share</string>
 </resources>

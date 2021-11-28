@@ -75,7 +75,9 @@ class SearchActivity : AppCompatActivity() {
             mRecyclerView!!.adapter = mAdapter
             (mAdapter as TopicAdapter).setOnItemClickListener(object : TopicAdapter.ClickListener {
                 override fun onItemClick(position: Int, v: View?) {
-                    Log.d(TAG, "onItemClick position: $position")
+                    val intent = Intent(this, topicViewActivity::class.java)
+                    intent.putExtra("topic", alltopics[position].id)
+                    startActivity(intent)
                 }
 
                 override fun onItemLongClick(position: Int, v: View?) {
@@ -152,7 +154,9 @@ class SearchActivity : AppCompatActivity() {
             mRecyclerView!!.adapter = mAdapter
             (mAdapter as TopicAdapter).setOnItemClickListener(object : TopicAdapter.ClickListener {
                 override fun onItemClick(position: Int, v: View?) {
-                    Log.d(TAG, "onItemClick position: $position")
+                    val intent = Intent(this, topicViewActivity::class.java)
+                    intent.putExtra("topic", listOfresults[position].id)
+                    startActivity(intent)
                 }
 
                 override fun onItemLongClick(position: Int, v: View?) {

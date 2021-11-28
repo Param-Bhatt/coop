@@ -123,7 +123,7 @@ class postViewActivity : AppCompatActivity() {
 
         }
         downvoteButton.setOnClickListener{
-            post.downvotes = post.downvotes?.minus(1)
+            post.downvotes = post.downvotes?.plus(1)
             val upvoteUpdateMap = mutableMapOf<String, Any>()
             upvoteUpdateMap["upvotes"] = post.downvotes!!
             db.collection("topics/${topicID}/posts").document("${postID}").update(upvoteUpdateMap)

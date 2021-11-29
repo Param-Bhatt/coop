@@ -3,16 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.23484848484848486" />
+        <entry key="app/src/main/res/drawable/ic_baseline_arrow_downward_24.xml" value="0.209375" />
+        <entry key="app/src/main/res/drawable/ic_coop.xml" value="0.209375" />
+        <entry key="app/src/main/res/drawable/ic_coop_white.xml" value="0.209375" />
+        <entry key="app/src/main/res/drawable/ic_google.xml" value="0.209375" />
+        <entry key="app/src/main/res/drawable/ic_welcome.xml" value="0.209375" />
+        <entry key="app/src/main/res/drawable/nav_layout_bg.xml" value="0.209375" />
+        <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.38645833333333335" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.19635416666666666" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.18489583333333334" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_sidepanel.xml" value="0.1890625" />
-        <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.33559782608695654" />
+        <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.22" />
         <entry key="app/src/main/res/layout/content_sidepanel.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/fragment_slideshow.xml" value="0.1890625" />
-        <entry key="app/src/main/res/layout/nav_header.xml" value="0.1890625" />
+        <entry key="app/src/main/res/layout/nav_header.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/menu/nav_menu.xml" value="0.67" />
       </map>
     </option>

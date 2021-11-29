@@ -27,6 +27,7 @@ class topicViewActivity : AppCompatActivity() {
     private lateinit var userID: String
     private lateinit var userUpdatePath: String
     private lateinit var userTopicID: String
+    private lateinit var newPostButton : View
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_topic_view)
@@ -71,6 +72,14 @@ class topicViewActivity : AppCompatActivity() {
                         Log.d(TAG, "unfollowed topic ${topicName}")
                     }
                 }
+            }
+
+            newPostButton = findViewById(R.id.fab)
+            newPostButton.setOnClickListener{
+                val intent = Intent(this, makePostActivity::class.java)
+                intent.putExtra("topic", topicID)
+                //Log.d(TAG, "Topic id : ${topicID}")
+                startActivity(intent)
             }
         }
     }

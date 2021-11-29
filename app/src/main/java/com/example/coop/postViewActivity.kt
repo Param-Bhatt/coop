@@ -56,6 +56,7 @@ class postViewActivity : AppCompatActivity() {
             val comment = findViewById<EditText>(R.id.newComment).text
             findViewById<EditText>(R.id.newComment).setText("")
             val userName = mAuth.currentUser?.displayName
+            val uid = mAuth.currentUser?.uid
             val time = sdf.format(Date())
             val map = HashMap<String, Any>()
             map["commentBody"] = comment.toString()
@@ -79,7 +80,7 @@ class postViewActivity : AppCompatActivity() {
             listOfComments!!.add(commentObj)
             //and ab karo swaha, user table me add the comments so you can retrieve them later on
             var collectionPath = "users"
-            db.collection(collectionPath).whereEqualTo("name", userName)
+            db.collection(collectionPath).whereEqualTo("uid", uid)
                 .get()
                 .addOnSuccessListener { result ->
                     if(!result.isEmpty){

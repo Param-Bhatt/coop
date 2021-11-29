@@ -24,7 +24,7 @@ class topicViewActivity : AppCompatActivity() {
     var postList: ArrayList<String> = ArrayList()
     lateinit var topicName: String
     private lateinit var mAuth: FirebaseAuth
-    private lateinit var username: String
+    private lateinit var userID: String
     private lateinit var userUpdatePath: String
     private lateinit var userTopicID: String
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +35,7 @@ class topicViewActivity : AppCompatActivity() {
         //adding items in list
         mAuth = FirebaseAuth.getInstance()
         val currentUser = mAuth.currentUser
-        username = currentUser?.displayName.toString()
+        userID = currentUser?.uid.toString()
         getData() { listoftopics ->
             findViewById<TextView>(R.id.topicHeader).text = topicName
             findViewById<TextView>(R.id.followerCount).text = followerCount.toString()
@@ -141,7 +141,7 @@ class topicViewActivity : AppCompatActivity() {
     private fun checkUserSubscription( callback: (Boolean) -> Unit) {
         var flag: Boolean = false
         var collectionPath = "users"
-        val query = db.collection(collectionPath).whereEqualTo("name", username)
+        val query = db.collection(collectionPath).whereEqualTo("uid", userID)
         query
             .get()
             .addOnSuccessListener { result ->

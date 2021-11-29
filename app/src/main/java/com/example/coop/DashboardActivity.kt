@@ -71,7 +71,7 @@ class DashboardActivity : AppCompatActivity() {
         Glide.with(this).load(currentUser?.photoUrl).into(navView.getHeaderView(0).findViewById(R.id.profile_image_side) as ImageView?)
 
         var collectionPath = "users"
-        val query: Query = db.collection("users").whereEqualTo("name", currentUser?.displayName.toString())
+        val query: Query = db.collection("users").whereEqualTo("uid", currentUser?.uid.toString())
         query
             .get()
             .addOnSuccessListener { userResult ->

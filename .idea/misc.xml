@@ -8,8 +8,10 @@
         <entry key="app/src/main/res/drawable/ic_coop_white.xml" value="0.209375" />
         <entry key="app/src/main/res/drawable/ic_google.xml" value="0.209375" />
         <entry key="app/src/main/res/drawable/ic_welcome.xml" value="0.209375" />
+        <entry key="app/src/main/res/drawable/img_circular_border.xml" value="0.209375" />
         <entry key="app/src/main/res/drawable/nav_layout_bg.xml" value="0.209375" />
-        <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.38645833333333335" />
+        <entry key="app/src/main/res/drawable/text_rect_border.xml" value="0.209375" />
+        <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.19635416666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_sidepanel.xml" value="0.1890625" />

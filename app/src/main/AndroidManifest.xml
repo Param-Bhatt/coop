@@ -4,13 +4,29 @@
 
     <application
         android:allowBackup="true"
+        android:fullBackupOnly="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Coop">
         <activity
+            android:name=".makePostActivity"
+            android:exported="true" />
+        <activity
+            android:name=".postViewActivity"
+            android:exported="true" />
+        <activity
+            android:name=".topicViewActivity"
+            android:exported="true" />
+        <activity
             android:name=".DashboardActivity"
+            android:exported="true" />
+        <activity
+            android:name=".UserActivity"
+            android:exported="true" />
+        <activity
+            android:name=".SearchActivity"
             android:exported="true" />
         <activity
             android:name=".SignInActivity"

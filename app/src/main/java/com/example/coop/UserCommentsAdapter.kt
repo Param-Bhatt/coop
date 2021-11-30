@@ -6,18 +6,19 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class TopicAdapter(private val mDataList: ArrayList<Topics>) : RecyclerView.Adapter<TopicAdapter.MyViewHolder>() {
+class UserCommentsAdapter(private val mDataList: ArrayList<UserCommentsModel>) : RecyclerView.Adapter<UserCommentsAdapter.MyViewHolder>() {
 
     private var clickListener: ClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.search_results, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.user_comment, parent, false)
         return MyViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.res.text = mDataList[position].topic
-        holder.follow.text = "Followers: ${mDataList[position].followers}"
+        holder.titleP.text = mDataList[position].postTit
+        holder.titleB.text = mDataList[position].comm
+        holder.topicNam.text = mDataList[position].topicName
     }
 
     override fun getItemCount(): Int {
@@ -25,15 +26,16 @@ class TopicAdapter(private val mDataList: ArrayList<Topics>) : RecyclerView.Adap
     }
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener{
-        internal var res: TextView
-        internal var follow: TextView
+        internal var titleP: TextView
+        internal var titleB: TextView
+        internal var topicNam: TextView
         var name: TextView? = null
 
         init {
-            res = itemView.findViewById<View>(R.id.result) as TextView
-            follow = itemView.findViewById<View>(R.id.followers) as TextView
+            titleP = itemView.findViewById<View>(R.id.post_title) as TextView
+            titleB = itemView.findViewById<View>(R.id.post_body) as TextView
+            topicNam = itemView.findViewById<View>(R.id.topic_name) as TextView
             itemView.setOnClickListener(this)
-            name = res
         }
 
         override fun onClick(v: View?) {
@@ -47,6 +49,5 @@ class TopicAdapter(private val mDataList: ArrayList<Topics>) : RecyclerView.Adap
 
     interface ClickListener {
         fun onItemClick(position: Int, v: View?)
-        fun onItemLongClick(position: Int, v: View?)
     }
 }

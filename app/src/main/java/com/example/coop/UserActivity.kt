@@ -53,7 +53,7 @@ class UserActivity : AppCompatActivity() {
         }
 
         mAuth = getInstance()
-        val currentUser = mAuth.currentUser
+        val currentUser = mAuth!!.currentUser
 
         navView.getHeaderView(0).findViewById<TextView>(R.id.user_name_side).text = currentUser?.displayName
         navView.getHeaderView(0).findViewById<TextView>(R.id.email_side).text = currentUser?.email

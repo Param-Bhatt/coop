@@ -78,7 +78,7 @@ class UserComments : Fragment() {
                                 val tempPost = UserCommentsModel()
                                 tempPost.id = p.id
                                 tempPost.postTit = p.data["postTitle"] as String
-                                tempPost.comm = p.data["comment"]?.toString()
+                                tempPost.comm = p.data["commentBody"]?.toString()
                                 tempPost.topicName = p.data["topicName"]?.toString()
                                 Log.d(
                                     ContentValues.TAG,

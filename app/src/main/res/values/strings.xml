@@ -29,6 +29,9 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="follow">Follow this</string>
+    <string name="comment">Comment</string>
+    <string name="commentText">Make a comment</string>
+    <string name="share">Share</string>
     <string name="title_activity_search">SearchActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
@@ -38,6 +41,10 @@
     <string name="tab_text_2">Tab 2</string>
     <string name="add_topic">Add Topic</string>
     <string name="topic">Topic</string>
+    <string name="makePost">Write your post here</string>
+    <string name="newPostTitle">Title of your post</string>
+    <string name="post">POST</string>
+    <string name="newPost">New Post</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="followers">Followers:</string>

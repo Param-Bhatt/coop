@@ -5,6 +5,7 @@ import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -27,22 +28,16 @@ class postViewActivity : AppCompatActivity() {
     private var mAdapter: RecyclerView.Adapter<*>? = null
     var listOfComments: ArrayList<Comments> = ArrayList()
     private lateinit var mAuth: FirebaseAuth
-    class Post{
-        var author : String ?= null
-        var time : Timestamp ?= null
-        var title : String ?= null
-        var body : String ?=  null
-        var upvotes : Long ?= null
-        var downvotes : Long ?= null
-    }
     val post = Post()
     val db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post_view)
+
         val topicID = intent.getStringExtra("topic")
         val postID = intent.getStringExtra("post")
+        val topicName = intent.getStringExtra("topicName")
         mAuth = FirebaseAuth.getInstance()
         val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
 
@@ -91,6 +86,8 @@ class postViewActivity : AppCompatActivity() {
                             map["postID"] = postID.toString()
                             map["timestamp"] = time
                             map["topicID"] = topicID.toString()
+                            map["topicName"] = topicName.toString()
+                            map["postTitle"] = post.title.toString()
                             db.collection(collectionPath).add(map)
                                 .addOnSuccessListener { ref ->
                                     Log.d("userAdditionSuccess", "comment added with ID: ${ref.id}")
@@ -146,9 +143,10 @@ class postViewActivity : AppCompatActivity() {
                 post.author = result.data?.get("postAuthor") as String?
                 post.body = result.data?.get("postBody") as String?
                 post.title = result.data?.get("postTitle") as String?
-                post.time = result.data?.get("time") as Timestamp?
+                //post.time = result.data?.get("time") as String?
                 post.upvotes = result.data?.get("upvotes") as Long?
                 post.downvotes = result.data?.get("downvotes") as Long?
+                Log.d("post body", result.data.toString())
                 val postTitle = findViewById<TextView>(R.id.postTitle)
                 val postBody = findViewById<TextView>(R.id.postBody)
                 val upvoteCount = findViewById<TextView>(R.id.upvote)

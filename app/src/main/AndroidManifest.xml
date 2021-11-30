@@ -11,6 +11,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Coop">
         <activity
+            android:name=".makePostActivity"
+            android:exported="true" />
+        <activity
+            android:name=".postViewActivity"
+            android:exported="true" />
+        <activity
             android:name=".topicViewActivity"
             android:exported="true" />
         <activity

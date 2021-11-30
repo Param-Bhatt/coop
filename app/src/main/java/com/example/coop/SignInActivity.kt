@@ -87,7 +87,7 @@ class SignInActivity : AppCompatActivity() {
                     Log.d("SignInActivity", "signInWithCredential:success")
                     updateUserTable()
                     //miniUpdate()
-                    val intent = Intent(this, DashboardActivity::class.java)
+                    val intent = Intent(this, HomeActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {

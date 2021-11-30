@@ -164,7 +164,7 @@ class topicViewActivity : AppCompatActivity() {
                                 for (each in result) {
                                     if (each.data["topicID"].toString() == topicID) {
                                         //user is already subscribed
-                                            userTopicID = each.id
+                                        userTopicID = each.id
                                         flag = true
 
                                     }
@@ -180,7 +180,7 @@ class topicViewActivity : AppCompatActivity() {
             }
             .addOnFailureListener { e ->
             }
-        }
+    }
 
     private fun getData(callback: (ArrayList<Users>) -> Unit) {
         var listOfusers: ArrayList<Users> = ArrayList()
@@ -222,6 +222,7 @@ class topicViewActivity : AppCompatActivity() {
         val intent = Intent(this, postViewActivity::class.java)
         intent.putExtra("topic", topicID)
         intent.putExtra("post", postID)
+        intent.putExtra("topicName", topicName)
         startActivity(intent)
     }
 }

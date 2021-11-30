@@ -5,7 +5,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
@@ -71,9 +70,9 @@ class SearchActivity : AppCompatActivity() {
             mRecyclerView = findViewById(R.id.result_recycler_view)
             val mLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
             mRecyclerView!!.layoutManager = mLayoutManager
-            mAdapter = TopicAdapter(alltopics)
+            mAdapter = SearchAdapter(alltopics)
             mRecyclerView!!.adapter = mAdapter
-            (mAdapter as TopicAdapter).setOnItemClickListener(object : TopicAdapter.ClickListener {
+            (mAdapter as SearchAdapter).setOnItemClickListener(object : SearchAdapter.ClickListener {
                 override fun onItemClick(position: Int, v: View?) {
                     val intent = Intent(this@SearchActivity, topicViewActivity::class.java)
                     intent.putExtra("topic", alltopics[position].id)
@@ -150,9 +149,9 @@ class SearchActivity : AppCompatActivity() {
 
     private fun updateRecyclerView() {
         mRecyclerView.apply {
-            mAdapter = TopicAdapter(listOfresults)
+            mAdapter = SearchAdapter(listOfresults)
             mRecyclerView!!.adapter = mAdapter
-            (mAdapter as TopicAdapter).setOnItemClickListener(object : TopicAdapter.ClickListener {
+            (mAdapter as SearchAdapter).setOnItemClickListener(object : SearchAdapter.ClickListener {
                 override fun onItemClick(position: Int, v: View?) {
                     val intent = Intent(this@SearchActivity, topicViewActivity::class.java)
                     intent.putExtra("topic", listOfresults[position].id)

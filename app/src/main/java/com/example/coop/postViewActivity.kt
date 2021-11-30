@@ -37,6 +37,7 @@ class postViewActivity : AppCompatActivity() {
 
         val topicID = intent.getStringExtra("topic")
         val postID = intent.getStringExtra("post")
+        val topicName = intent.getStringExtra("topicName")
         mAuth = FirebaseAuth.getInstance()
         val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
 
@@ -85,6 +86,8 @@ class postViewActivity : AppCompatActivity() {
                             map["postID"] = postID.toString()
                             map["timestamp"] = time
                             map["topicID"] = topicID.toString()
+                            map["topicName"] = topicName.toString()
+                            map["postTitle"] = post.title.toString()
                             db.collection(collectionPath).add(map)
                                 .addOnSuccessListener { ref ->
                                     Log.d("userAdditionSuccess", "comment added with ID: ${ref.id}")
@@ -140,7 +143,7 @@ class postViewActivity : AppCompatActivity() {
                 post.author = result.data?.get("postAuthor") as String?
                 post.body = result.data?.get("postBody") as String?
                 post.title = result.data?.get("postTitle") as String?
-                post.time = result.data?.get("time") as Timestamp?
+                //post.time = result.data?.get("time") as String?
                 post.upvotes = result.data?.get("upvotes") as Long?
                 post.downvotes = result.data?.get("downvotes") as Long?
                 Log.d("post body", result.data.toString())

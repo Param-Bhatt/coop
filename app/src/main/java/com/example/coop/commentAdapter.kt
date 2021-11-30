@@ -45,3 +45,4 @@ class commentAdapter(private val mDataList: ArrayList<Comments>) : RecyclerView.
         fun onItemLongClick(position: Int, v: View?)
     }
 }
+

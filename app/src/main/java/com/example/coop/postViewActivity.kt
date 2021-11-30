@@ -5,6 +5,7 @@ import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -27,20 +28,13 @@ class postViewActivity : AppCompatActivity() {
     private var mAdapter: RecyclerView.Adapter<*>? = null
     var listOfComments: ArrayList<Comments> = ArrayList()
     private lateinit var mAuth: FirebaseAuth
-    class Post{
-        var author : String ?= null
-        var time : Timestamp ?= null
-        var title : String ?= null
-        var body : String ?=  null
-        var upvotes : Long ?= null
-        var downvotes : Long ?= null
-    }
     val post = Post()
     val db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post_view)
+
         val topicID = intent.getStringExtra("topic")
         val postID = intent.getStringExtra("post")
         mAuth = FirebaseAuth.getInstance()
@@ -56,6 +50,7 @@ class postViewActivity : AppCompatActivity() {
             val comment = findViewById<EditText>(R.id.newComment).text
             findViewById<EditText>(R.id.newComment).setText("")
             val userName = mAuth.currentUser?.displayName
+            val uid = mAuth.currentUser?.uid
             val time = sdf.format(Date())
             val map = HashMap<String, Any>()
             map["commentBody"] = comment.toString()
@@ -79,7 +74,7 @@ class postViewActivity : AppCompatActivity() {
             listOfComments!!.add(commentObj)
             //and ab karo swaha, user table me add the comments so you can retrieve them later on
             var collectionPath = "users"
-            db.collection(collectionPath).whereEqualTo("name", userName)
+            db.collection(collectionPath).whereEqualTo("uid", uid)
                 .get()
                 .addOnSuccessListener { result ->
                     if(!result.isEmpty){
@@ -148,6 +143,7 @@ class postViewActivity : AppCompatActivity() {
                 post.time = result.data?.get("time") as Timestamp?
                 post.upvotes = result.data?.get("upvotes") as Long?
                 post.downvotes = result.data?.get("downvotes") as Long?
+                Log.d("post body", result.data.toString())
                 val postTitle = findViewById<TextView>(R.id.postTitle)
                 val postBody = findViewById<TextView>(R.id.postBody)
                 val upvoteCount = findViewById<TextView>(R.id.upvote)

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".makePostActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/makePostTitle"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/colorPrimary"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        android:text="@string/newPost"
+        android:textAlignment="center"
+        android:layout_margin="4dp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:orientation="vertical"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp"
+        android:layout_weight="8"
+        android:id="@+id/newPostTitle"
+        android:hint="@string/newPostTitle"
+        app:layout_constraintTop_toBottomOf="@id/makePostTitle"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_margin="4dp"
+        android:orientation="vertical"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp"
+        android:layout_weight="8"
+        android:id="@+id/newPostBody"
+        android:hint="@string/makePost"
+        android:gravity="left | top"
+        app:layout_constraintTop_toBottomOf="@id/newPostTitle"/>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/newPostBody"
+        app:layout_constraintEnd_toEndOf="@id/newPostBody"
+        android:id="@+id/postButton"
+        android:contentDescription="@string/post"
+        android:textSize="20sp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="150dp"
+        app:rippleColor="@color/colorPrimaryDark"
+        android:src="@drawable/ic_baseline_check_circle_24"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

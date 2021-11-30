@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
          * Else send him to DashboardActivity*/
         Handler().postDelayed({
             if(user != null){
-                val dashboardIntent = Intent(this, DashboardActivity::class.java)
+                val dashboardIntent = Intent(this, HomeActivity::class.java)
                 startActivity(dashboardIntent)
                 finish()
             }else{

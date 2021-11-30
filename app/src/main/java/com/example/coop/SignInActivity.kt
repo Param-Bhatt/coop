@@ -107,6 +107,7 @@ class SignInActivity : AppCompatActivity() {
                     val data = HashMap<String, Any>()
                     if (currentUser != null) {
                         data["name"] = currentUser?.displayName.toString()
+                        data["uid"] = currentUser?.uid
                     }
                     val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
                     val currentDate = sdf.format(Date())

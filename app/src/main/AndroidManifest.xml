@@ -11,15 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Coop">
         <activity
-            android:name=".postViewActivity"
-            android:exported="true" />
-        <activity
             android:name=".topicViewActivity"
             android:exported="true" />
         <activity
             android:name=".DashboardActivity"
             android:exported="true" />
-      
         <activity
             android:name=".UserActivity"
             android:exported="true" />
@@ -28,6 +24,9 @@
             android:exported="true" />
         <activity
             android:name=".SignInActivity"
+            android:exported="true" />
+        <activity
+            android:name=".HomeActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"

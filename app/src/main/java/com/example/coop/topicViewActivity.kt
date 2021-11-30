@@ -2,7 +2,6 @@ package com.example.coop
 
 import android.content.ContentValues
 import android.content.ContentValues.TAG
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -46,8 +45,7 @@ class topicViewActivity : AppCompatActivity() {
             mRecyclerView!!.adapter = mAdapter
             (mAdapter as Myadapter).setOnItemClickListener(object : Myadapter.ClickListener {
                 override fun onItemClick(position: Int, v: View?) {
-                    makeIntent(topicID, postList[position])
-                    //Log.d(TAG, "onItemClick position: $position post ${postList[position]}")
+                    Log.d(TAG, "onItemClick position: $position post ${postList[position]}")
                 }
 
                 override fun onItemLongClick(position: Int, v: View?) {
@@ -92,8 +90,6 @@ class topicViewActivity : AppCompatActivity() {
                 .delete()
                 .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully deleted!") }
                 .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
-            val button = findViewById<Button>(R.id.followButton) as Button
-            button.text = "Follow This"
         }
     }
     private fun followed() {
@@ -132,8 +128,6 @@ class topicViewActivity : AppCompatActivity() {
                         }
                 }
             }
-            val button = findViewById<Button>(R.id.followButton) as Button
-            button.text = "Unfollow This"
         }
 
     }
@@ -208,11 +202,5 @@ class topicViewActivity : AppCompatActivity() {
                     Log.w(ContentValues.TAG, "Error in getting the requested topic", e)
                 }
         }
-    }
-    private fun makeIntent(topicID : String, postID : String){
-        val intent = Intent(this, postViewActivity::class.java)
-        intent.putExtra("topic", topicID)
-        intent.putExtra("post", postID)
-        startActivity(intent)
     }
 }

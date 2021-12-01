@@ -7,7 +7,7 @@
     android:layout_margin="10dp"
     android:orientation="vertical"
     android:minHeight="100dp"
-    app:cardBackgroundColor="@color/colorTurquoiseBlue"
+    app:cardBackgroundColor="@color/colorPrimaryLight"
     android:elevation="4dp"
     app:cardCornerRadius="16dp">
 

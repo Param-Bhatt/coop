@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="75dp"
+    android:layout_height="100dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginBottom="1dp"
     app:cardCornerRadius="16dp"
@@ -11,17 +11,22 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:paddingVertical="4dp"
+        android:background="@drawable/text_rect_border"
         android:id="@+id/card">
         <TextView
             android:id="@+id/post_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="100dp"
+            android:layout_margin="10dp"
             android:text="@string/example"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:textColor="@color/colorPrimaryLight"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="5dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/topic_name"
             tools:ignore="MissingConstraints" />
@@ -30,8 +35,10 @@
             android:id="@+id/post_body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
             android:text="@string/example"
+            android:layout_margin="5dp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="5dp"
             app:layout_constraintStart_toStartOf="@+id/post_title"
             app:layout_constraintTop_toBottomOf="@+id/post_title"/>
 
@@ -39,9 +46,11 @@
             android:id="@+id/topic_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
             android:singleLine="true"
             android:text="@string/example"
+            android:layout_margin="5dp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/post_title"
             app:layout_constraintTop_toTopOf="parent" />

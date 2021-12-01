@@ -1,14 +1,12 @@
 package com.example.coop
 
+import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
@@ -20,6 +18,7 @@ import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.android.material.tabs.TabLayout.TabLayoutOnPageChangeListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuth.*
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_dashboard.*
@@ -28,36 +27,81 @@ class UserActivity : AppCompatActivity() {
 
     private lateinit var mAuth: FirebaseAuth
     lateinit var toggle : ActionBarDrawerToggle
+    private lateinit var username: String
+    private var mSearchView: SearchView? = null
+    val db = Firebase.firestore
+    var topicList:ArrayList<String> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user)
 
-        val drawerLayout : DrawerLayout = findViewById(R.id.drawer_layout)
-        val navView : NavigationView = findViewById(R.id.nav_view)
-        val db = Firebase.firestore
+        mSearchView = findViewById(R.id.search_bar)
+        with(mSearchView) {
+            this?.isIconified = false
+        }
 
-        toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        drawerLayout.addDrawerListener(toggle)
+        val mDrawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
+        val navView = findViewById<NavigationView>(R.id.nav_view)
+        toggle = ActionBarDrawerToggle(this, mDrawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        mDrawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        navView.setNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.nav_home -> Toast.makeText(applicationContext, "Clicked home", Toast.LENGTH_SHORT).show()
-                R.id.nav_settings -> Toast.makeText(applicationContext, "Clicked settings", Toast.LENGTH_SHORT).show()
-
-            }
-            true
-        }
-
-        mAuth = getInstance()
-        val currentUser = mAuth!!.currentUser
-
+        mAuth = FirebaseAuth.getInstance()
+        val currentUser = mAuth.currentUser
         navView.getHeaderView(0).findViewById<TextView>(R.id.user_name_side).text = currentUser?.displayName
         navView.getHeaderView(0).findViewById<TextView>(R.id.email_side).text = currentUser?.email
         Glide.with(this).load(currentUser?.photoUrl).into(navView.getHeaderView(0).findViewById(R.id.profile_image_side) as ImageView?)
+
+        //adding items in list
+        username = currentUser?.displayName.toString()
+        val uid = currentUser?.uid.toString()
+
+        var collectionPath = "users"
+        val query: Query = db.collection("users").whereEqualTo("uid", currentUser?.uid.toString())
+        query
+            .get()
+            .addOnSuccessListener { userResult ->
+                for(document in userResult){
+                    Log.d(ContentValues.TAG, "${document.id} => ${document.data}")
+                    collectionPath = collectionPath +"/"+ document.id + "/topics"
+                    db.collection(collectionPath)
+                        .get()
+                        .addOnSuccessListener{ userTopics ->
+                            for(each in userTopics){
+                                Log.d(ContentValues.TAG, "${each.id} => ${each.data["topicName"]}")
+
+                                val mMenu = navView.menu
+                                var menuSize = mMenu.size()
+                                var myItemID:String = each.data["topicID"] as String
+                                mMenu.add(1, myItemID.toInt(), menuSize, each.data["topicName"] as String)
+                                //topicList.put(each.id, each.data["topicName"] as String)
+                                topicList.add(myItemID)
+                            }
+                        }
+                        .addOnFailureListener { exception ->
+                            Log.w(ContentValues.TAG, "Error in getting documents posts", exception)
+                        }
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w(ContentValues.TAG, "Error in getting documents", exception)
+            }
+
+
+        navView.setNavigationItemSelectedListener {
+            if (it.itemId == R.id.nav_home) {
+                var intent = Intent(this, HomeActivity::class.java)
+                startActivity(intent)
+            }
+            for(i in topicList){
+                if(it.itemId == i.toInt())
+                //Toast.makeText(applicationContext, "Clicked item with id $i", Toast.LENGTH_SHORT).show()//
+                    makeIntent(i)
+            }
+            true
+        }
 
         val tabLayout = findViewById<TabLayout>(R.id.tabLayout)
         val viewPager = findViewById<ViewPager>(R.id.viewPager)
@@ -81,6 +125,8 @@ class UserActivity : AppCompatActivity() {
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
     }
+
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(toggle.onOptionsItemSelected(item)){
             return true
@@ -92,9 +138,16 @@ class UserActivity : AppCompatActivity() {
 
         return super.onOptionsItemSelected(item)
     }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.options_menu, menu)
 
         return true
+    }
+
+    private fun makeIntent(topicID : String){
+        val intent = Intent(this, topicViewActivity::class.java)
+        intent.putExtra("topic", topicID)
+        startActivity(intent)
     }
 }

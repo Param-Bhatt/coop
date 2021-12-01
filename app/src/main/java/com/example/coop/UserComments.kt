@@ -1,6 +1,7 @@
 package com.example.coop
 
 import android.content.ContentValues
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.auth.FirebaseAuth as FirebaseAuth
@@ -57,6 +59,15 @@ class UserComments : Fragment() {
             }
             mAdapter = UserCommentsAdapter(poss)
             recyclerView!!.adapter = mAdapter
+            (mAdapter as UserCommentsAdapter).setOnItemClickListener(object : UserCommentsAdapter.ClickListener {
+                override fun onItemClick(position: Int, v: View?) {
+                    val intent = Intent(activity, postViewActivity::class.java)
+                    intent.putExtra("topic", poss[position].topicID)
+                    intent.putExtra("post", poss[position].postId)
+                    intent.putExtra("topicName", poss[position].topicName)
+                    startActivity(intent)
+                }
+            })
         }
     }
 
@@ -71,7 +82,7 @@ class UserComments : Fragment() {
                     Log.d(ContentValues.TAG, collectionPath)
                     val query = db.collection(collectionPath)
                     val posts: ArrayList<UserCommentsModel> = ArrayList()
-                    query
+                    query.orderBy("timestamp", Query.Direction.ASCENDING)
                         .get()
                         .addOnSuccessListener { ps ->
                             for (p in ps) {
@@ -80,6 +91,8 @@ class UserComments : Fragment() {
                                 tempPost.postTit = p.data["postTitle"] as String
                                 tempPost.comm = p.data["commentBody"]?.toString()
                                 tempPost.topicName = p.data["topicName"]?.toString()
+                                tempPost.topicID = p.data["topicID"].toString()
+                                tempPost.postId = p.data["postID"].toString()
                                 Log.d(
                                     ContentValues.TAG,
                                     "${tempPost.id} => ${tempPost.postTit} => ${tempPost.comm}"

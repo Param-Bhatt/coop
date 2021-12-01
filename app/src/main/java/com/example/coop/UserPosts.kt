@@ -1,6 +1,8 @@
 package com.example.coop
 
+import android.app.DownloadManager
 import android.content.ContentValues
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +11,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.auth.FirebaseAuth as FirebaseAuth
@@ -22,7 +25,7 @@ class UserPosts : Fragment() {
     var mAdapter: UserPostsAdapter? = null
     private var db = Firebase.firestore
     var recyclerView: RecyclerView? = null
-    var poss: ArrayList<UserPostsModel>? = null
+    var poss: ArrayList<UserPostsModel> = ArrayList<UserPostsModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,6 +59,15 @@ class UserPosts : Fragment() {
             }
             mAdapter = UserPostsAdapter(poss!!)
             recyclerView!!.adapter = mAdapter
+            (mAdapter as UserPostsAdapter).setOnItemClickListener(object : UserPostsAdapter.ClickListener {
+                override fun onItemClick(position: Int, v: View?) {
+                    val intent = Intent(activity, postViewActivity::class.java)
+                    intent.putExtra("topic", poss[position].topicID)
+                    intent.putExtra("post", poss[position].postId)
+                    intent.putExtra("topicName", poss[position].topicName)
+                    startActivity(intent)
+                }
+            })
         }
     }
 
@@ -69,7 +81,7 @@ class UserPosts : Fragment() {
                     val collectionPath = "users/${uid}/posts"
                     val query = db.collection(collectionPath)
                     val posts: ArrayList<UserPostsModel> = ArrayList()
-                    query
+                    query.orderBy("time", Query.Direction.ASCENDING)
                         .get()
                         .addOnSuccessListener { ps ->
                             for (p in ps) {
@@ -78,6 +90,8 @@ class UserPosts : Fragment() {
                                 tempPost.titleP = p.data["postTitle"] as String
                                 tempPost.titleB = p.data["postBody"]?.toString()
                                 tempPost.topicName = p.data["topicName"]?.toString()
+                                tempPost.topicID = p.data["topicID"]?.toString()
+                                tempPost.postId = p.data["postID"]?.toString()
                                 Log.d(
                                     ContentValues.TAG,
                                     "${tempPost.id} => ${tempPost.titleP} => ${tempPost.titleB}"

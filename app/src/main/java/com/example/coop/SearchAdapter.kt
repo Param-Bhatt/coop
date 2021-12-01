@@ -47,6 +47,5 @@ class SearchAdapter(private val mDataList: ArrayList<Topics>) : RecyclerView.Ada
 
     interface ClickListener {
         fun onItemClick(position: Int, v: View?)
-        fun onItemLongClick(position: Int, v: View?)
     }
 }

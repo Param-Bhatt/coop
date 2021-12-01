@@ -9,11 +9,6 @@
         android:icon="@drawable/ic_baseline_home_24"/>
 
     <item
-        android:id="@+id/nav_settings"
-        android:title="@string/nav_settings"
-        android:icon="@drawable/ic_baseline_settings_24"/>
-
-    <item
         android:title="@string/menu_topics">
         <menu>
             <ListView

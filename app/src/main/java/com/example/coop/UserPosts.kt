@@ -81,7 +81,7 @@ class UserPosts : Fragment() {
                     val collectionPath = "users/${uid}/posts"
                     val query = db.collection(collectionPath)
                     val posts: ArrayList<UserPostsModel> = ArrayList()
-                    query.orderBy("time", Query.Direction.ASCENDING)
+                    query.orderBy("time", Query.Direction.DESCENDING)
                         .get()
                         .addOnSuccessListener { ps ->
                             for (p in ps) {

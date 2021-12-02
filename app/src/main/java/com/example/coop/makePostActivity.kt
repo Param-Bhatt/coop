@@ -146,17 +146,27 @@ class makePostActivity : AppCompatActivity() {
                     .addOnSuccessListener { result ->
                         if(!result.isEmpty){
                             for(each in result){
-                                db.collection("users/${each.id}/posts").add(userMap)
-                                    .addOnSuccessListener { ref ->
-                                        Log.d("postAdditionSuccess", "post added with ID: ${ref.id} to user : ${uid}")
-                                        val intent = Intent(this, topicViewActivity::class.java)
-                                        intent.putExtra("topic", topicID)
-                                        startActivity(intent)
-
-
+                                db.collection("topics").document(topicID)
+                                    .get()
+                                    .addOnSuccessListener { topic ->
+                                        userMap["topicName"] = topic.data?.get("name").toString()
+                                        db.collection("users/${each.id}/posts").add(userMap)
+                                            .addOnSuccessListener { ref ->
+                                                Log.d("postAdditionSuccess", "post added with ID: ${ref.id} to user : ${uid}")
+                                                val intent = Intent(this, topicViewActivity::class.java)
+                                                intent.putExtra("topic", topicID)
+                                                startActivity(intent)
+                                            }
+                                            .addOnFailureListener { e ->
+                                                Log.w("postAdditionFailure", "Error in adding post to user database", e)
+                                            }
                                     }
                                     .addOnFailureListener { e ->
-                                        Log.w("postAdditionFailure", "Error in adding post to user database", e)
+                                        Log.w(
+                                            "postAdditionFailure",
+                                            "Error in adding post to user database",
+                                            e
+                                        )
                                     }
                             }
                         }

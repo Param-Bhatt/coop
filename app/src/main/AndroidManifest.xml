@@ -20,9 +20,6 @@
             android:name=".topicViewActivity"
             android:exported="true" />
         <activity
-            android:name=".DashboardActivity"
-            android:exported="true" />
-        <activity
             android:name=".UserActivity"
             android:exported="true" />
         <activity

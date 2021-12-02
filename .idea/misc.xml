@@ -3,12 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/vikky/StudioProjects/coop/app/src/main/res/drawable/ic_baseline_arrow_downward_24.xml" value="0.22708333333333333" />
+        <entry key="..\:/Users/vikky/StudioProjects/coop/app/src/main/res/drawable/ic_baseline_arrow_upward_24.xml" value="0.22708333333333333" />
+        <entry key="..\:/Users/vikky/StudioProjects/coop/app/src/main/res/layout/activity_dashboard.xml" value="0.13541666666666666" />
+        <entry key="..\:/Users/vikky/StudioProjects/coop/app/src/main/res/layout/activity_main.xml" value="0.15670289855072464" />
+        <entry key="..\:/Users/vikky/StudioProjects/coop/app/src/main/res/layout/activity_make_post.xml" value="0.190625" />
+        <entry key="..\:/Users/vikky/StudioProjects/coop/app/src/main/res/layout/activity_post_view.xml" value="0.22" />
         <entry key="..\:/Users/vikky/StudioProjects/coop/app/src/main/res/layout/activity_search.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/vikky/StudioProjects/coop/app/src/main/res/layout/activity_sign_in.xml" value="0.15670289855072464" />
+        <entry key="..\:/Users/vikky/StudioProjects/coop/app/src/main/res/layout/activity_topic_view.xml" value="0.15670289855072464" />
         <entry key="..\:/Users/vikky/StudioProjects/coop/app/src/main/res/layout/activity_user.xml" value="0.2598958333333333" />
         <entry key="..\:/Users/vikky/StudioProjects/coop/app/src/main/res/layout/activity_user_info.xml" value="0.9" />
         <entry key="..\:/Users/vikky/StudioProjects/coop/app/src/main/res/layout/fragmebt_user_posts.xml" value="0.2552083333333333" />
         <entry key="..\:/Users/vikky/StudioProjects/coop/app/src/main/res/layout/fragment_user_comments.xml" value="0.2552083333333333" />
         <entry key="..\:/Users/vikky/StudioProjects/coop/app/src/main/res/layout/fragment_user_info.xml" value="0.19583333333333333" />
+        <entry key="..\:/Users/vikky/StudioProjects/coop/app/src/main/res/layout/home_post.xml" value="0.15670289855072464" />
         <entry key="..\:/Users/vikky/StudioProjects/coop/app/src/main/res/layout/nav_header.xml" value="0.19429347826086957" />
         <entry key="..\:/Users/vikky/StudioProjects/coop/app/src/main/res/layout/row_user.xml" value="0.203125" />
         <entry key="..\:/Users/vikky/StudioProjects/coop/app/src/main/res/layout/search_results.xml" value="0.2957427536231884" />

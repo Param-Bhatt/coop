@@ -7,7 +7,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class commentAdapter(private val mDataList: ArrayList<Comments>) : RecyclerView.Adapter<commentAdapter.commentViewHolder>() {
-    private var clickListener: commentAdapter.ClickListener? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): commentViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.row_user, parent, false)
         return commentViewHolder(view)
@@ -22,7 +21,7 @@ class commentAdapter(private val mDataList: ArrayList<Comments>) : RecyclerView.
         return mDataList.size
     }
 
-    inner class commentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    inner class commentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         internal var userName: TextView
         internal var commentBody : TextView
         var name: TextView? = null
@@ -30,19 +29,8 @@ class commentAdapter(private val mDataList: ArrayList<Comments>) : RecyclerView.
         init {
             userName = itemView.findViewById<View>(R.id.post_title) as TextView
             commentBody = itemView.findViewById<View>(R.id.post_body) as TextView
-            itemView.setOnClickListener(this);
             name = itemView.findViewById(R.id.post_title);
         }
-        override fun onClick(v: View?) {
-            clickListener!!.onItemClick(adapterPosition, v)
-        }
-    }
-    fun setOnItemClickListener(clickListener: commentAdapter.ClickListener) {
-        this.clickListener = clickListener
-    }
-    interface ClickListener {
-        fun onItemClick(position: Int, v: View?)
-        fun onItemLongClick(position: Int, v: View?)
     }
 }
 

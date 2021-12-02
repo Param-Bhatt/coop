@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuth.*
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_dashboard.*
+import kotlinx.android.synthetic.main.activity_user.*
 
 class UserActivity : AppCompatActivity() {
 
@@ -48,7 +48,7 @@ class UserActivity : AppCompatActivity() {
         toggle.syncState()
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        mAuth = FirebaseAuth.getInstance()
+        mAuth = getInstance()
         val currentUser = mAuth.currentUser
         navView.getHeaderView(0).findViewById<TextView>(R.id.user_name_side).text = currentUser?.displayName
         navView.getHeaderView(0).findViewById<TextView>(R.id.email_side).text = currentUser?.email

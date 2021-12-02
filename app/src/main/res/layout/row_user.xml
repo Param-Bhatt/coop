@@ -14,13 +14,13 @@
         android:background="@drawable/text_rect_border"
         android:layout_margin="10dp"
         android:padding="10dp"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card">
         <TextView
             android:id="@+id/post_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:singleLine="true"
             android:text="@string/example"
             android:textColor="@color/black"
             android:textSize="20sp"
